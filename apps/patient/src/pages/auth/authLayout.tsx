@@ -4,20 +4,25 @@ import { Outlet } from 'react-router-dom';
 function AuthLayout() {
 
     return (
-        <div >
-            <div>
-                <div className='heroImage'>
-                    <img src="images/svg/statistics.svg" alt='logo' />
+        <div className="container grid h-screen w-screen flex-col items-center justify-center text-muted lg:max-w-none lg:grid-cols-2 lg:px-0">
+            <div className="hidden relative lg:flex flex-col items-center justify-center bg-blue-200 h-full w-full">
+                <div>
+                    <img 
+                        className='object-scale-down h-48'
+                        src="svg/statistics.svg"
+                        alt='logo'
+                    />
                 </div>
-                <div className='leftTitleText'>
-                    <h2>Access Patient Information with ease</h2>
-                    <h3>Your health is our priority</h3>
+                <div className='flex flex-col items-center justify-center mt-10 gap-1'>
+                    <span className='font-extrabold'>Access Patient Information with ease</span>
+                    <span className='font-light'>Your health is our priority</span>
                 </div>
             </div>
-            <div >
-                <div >
+            <div>
+                <div className='flex flex-col items-center'>
                     <img
-                        src="images/alera.png"
+                        className='w-64'
+                        src="png/alera.png"
                         alt='logo'
                     />
                     <Outlet />

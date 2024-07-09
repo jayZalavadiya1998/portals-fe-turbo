@@ -1,5 +1,4 @@
 import { Button, Input } from '@repo/ui/shadcn';
-import '@repo/ui/global-css';
 import {
   BrowserRouter as Router,
   Route,
