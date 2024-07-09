@@ -85,9 +85,6 @@ importers:
 
   packages/common:
     dependencies:
-      '@repo/common':
-        specifier: workspace:*
-        version: 'link:'
       '@repo/ui':
         specifier: workspace:*
         version: link:../ui
