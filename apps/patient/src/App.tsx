@@ -1,13 +1,37 @@
 import { Button, Input } from '@repo/ui/shadcn'
 import '@repo/ui/global-css'
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+} from 'react-router-dom';
+import SideNav from './components/side-nav';
+import { ThemeProvider } from './components/theme-provider';
+
 function App() {
 
   return (
     <>
-      <div className="bg-purple-300">
-        <Button>Hello</Button>
-        <Input name='hello' />
-      </div>
+      <ThemeProvider>
+        <Router>
+          <Routes>
+            <Route path='/' element={<SideNav />}>
+              {/* <Route
+                path='/'
+                element={<Home/>}
+              />
+              <Route
+                path='/account-info'
+                element={<AccountInfo/>}
+              />
+              <Route
+                path='/messages'
+                element={<Messages/>}
+              /> */}
+            </Route>
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </>
   )
 }
