@@ -15,7 +15,7 @@ export interface Patient {
 interface PatientContextProps {
   patient_data: Patient;
   children?: JSX.Element | JSX.Element[];
-  setPatient?: (patient: any) => void;
+  setPatient?: (patient: Patient) => void;
 }
 
 export const PatientContext = createContext<PatientContextProps>({
@@ -32,7 +32,11 @@ export const PatientContext = createContext<PatientContextProps>({
 });
 
 // Create the provider component
-export const PatientProvider = ({ children }: any) => {
+interface IPatientProvider {
+  children: React.ReactNode
+}
+
+export const PatientProvider = ({ children }: IPatientProvider) => {
   const [patient_data, setPatient] = useState<Patient>({
     user_id: 0,
     chat_profile_id: '',
@@ -44,7 +48,7 @@ export const PatientProvider = ({ children }: any) => {
 
   let local_patient_data: any = localStorage.getItem("patient_info");
 
-  if (!!local_patient_data) {
+  if (!local_patient_data) {
     local_patient_data = JSON.parse(local_patient_data);
   }
 

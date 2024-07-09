@@ -1,22 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PatientNotesService } from '../utility/service/patientNotesService';
 import { apiCallTime } from '../helper-methods';
-
-interface QueryStringFilter {
-	field: string;
-	value: any;
-	operator: string;
-}
-
-
-export interface IQueryString {
-	filter: {
-		filters: QueryStringFilter[];
-		logic: 'and' | 'or';
-	};
-	skip: number | string;
-	take: number | string;
-}
+import { IQueryString } from '../utility';
 
 export const PatientNotesHook = (patientId: number) => {
 

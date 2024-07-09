@@ -1,8 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { ICreatePatientNotes, IPatientNotes } from '../../../models/patientNotes';
-import { Toaster, toast } from 'react-hot-toast';
-import { commonRegex } from '../../../utility';
+import { useEffect } from 'react';
+import { IPatientNotes } from '../../../models/patientNotes';
 import {DataTable} from "@repo/ui/shadcn"
 import { notesColumns } from './notesColums';
 interface IPatientNotesProps {
@@ -11,23 +8,8 @@ interface IPatientNotesProps {
 }
 
 const PatientNotesScreen = (props: IPatientNotesProps) => {
-	const temp: RegExp = new RegExp(/^\s/);
-
-	const {
-		register,
-		formState: { errors },
-		handleSubmit,
-		control,
-		reset,
-		resetField,
-		setValue,
-	} = useForm();
-
-	const [tableData, setTableData] = useState<IPatientNotes[]>([]);
-	const [filterOpen, setFilterOpen] = useState<boolean>(true);
 
 	useEffect(() => {
-		setTableData(props.patientNotesData);
 	}, [props.patientNotesData]);
 
 	return (

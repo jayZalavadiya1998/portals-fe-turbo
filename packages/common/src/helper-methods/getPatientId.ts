@@ -3,7 +3,7 @@ import { PatientContext } from '../context';
 
 export const GetPatientId = () => {
     const { patient_data } = useContext(PatientContext);
-    let patient_id: any = 0;
+    let patient_id: number = 0;
 
     if (patient_data?.patient_id) {
         patient_id = patient_data?.patient_id;

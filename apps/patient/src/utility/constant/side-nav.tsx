@@ -1,6 +1,6 @@
 import { Icons } from '@repo/ui/shadcn';
+import { SideNavItem } from '..';
 
-import { SideNavItem } from './types';
 
 export const SIDENAV_ITEMS: SideNavItem[] = [
   {

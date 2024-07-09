@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Icons } from '@repo/ui/shadcn';
-import { SIDENAV_ITEMS } from '../lib/constants';
-import { SideNavItem } from '../lib/types';
+import { SIDENAV_ITEMS } from '../utility/constant/side-nav';
 import { useTheme } from './useTheme';
+import { SideNavItem } from '../utility';
 
 const SideNav = () => {
 

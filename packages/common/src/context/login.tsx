@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { ILocalUser } from '../models';
 import { UserService } from '../utility/service/userService';
@@ -16,7 +16,11 @@ const AuthContext = createContext<IProps>({
 	loading: false
 });
 
-export const AuthProvider = ({ children }: any) => {
+interface AuthProviderProps {
+	children: ReactNode;
+}
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 	const [user, setUser] = useState<ILocalUser | null>(null);
 	const [loading, setLoading] = useState(true);
