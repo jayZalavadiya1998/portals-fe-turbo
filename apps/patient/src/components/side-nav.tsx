@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Icons } from '@repo/ui/shadcn';
 import { SIDENAV_ITEMS } from '../lib/constants';
 import { SideNavItem } from '../lib/types';
-import { useTheme } from './theme-provider';
+import { useTheme } from './useTheme';
 
 const SideNav = () => {
-  const pathname = useLocation();
-  const url: any = window.location.href;
 
   const { setTheme, theme } = useTheme();
 
@@ -49,7 +47,7 @@ const SideNav = () => {
             }
           </div>
           <div className="flex flex-col space-y-2 md:px-6 ">
-            {SIDENAV_ITEMS.map((item: any, idx: any) => {
+            {SIDENAV_ITEMS.map((item: SideNavItem, idx: number) => {
               return <MenuItem key={idx} item={item} />;
             })}
           </div>

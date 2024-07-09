@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginHook } from '../../../../hooks/loginHook';
-import { AuthHook, ILocalUser, ILoginRequest, PatientContext, UserService } from '@repo/common/common-library';
+import { AuthHook, ILocalUser,PatientContext, UserService } from '@repo/common/common-library';
 import { useQuery } from '../../../../hooks';
 import LoginScreen from '../presentation/login';
+import { InputTypeLoginUser } from '../presentation/types';
 export const LoginContainer = () => {
 
 	const { setPatient } = useContext(PatientContext);
@@ -12,13 +13,12 @@ export const LoginContainer = () => {
 	const query = useQuery();
 	const auth = AuthHook();
 	const [isBtnDisable, setIsBtnDisable] = useState(false);
-	const { login, loading, loginError: errorMessage } = LoginHook();
+	const { login } = LoginHook();
 
-	const loginHandler = async (e: any) => {
+	const loginHandler = async (formData: InputTypeLoginUser) => {
 		setIsBtnDisable(true);
-		const request = e as ILoginRequest;
 		try {
-			const result = await login(request);
+			const result = await login(formData);
 			const patient_data = {
 				user_id: result?.results?.patient_info?.user_id,
 				chat_profile_id: result?.results?.patient_info?.chat_profile_id,
@@ -68,7 +68,7 @@ export const LoginContainer = () => {
 	return (
 		<LoginScreen
 			loginHandler={loginHandler}
-		// isBtnDisable={isBtnDisable}
+			isBtnDisable={isBtnDisable}
 		/>
 	);
 };

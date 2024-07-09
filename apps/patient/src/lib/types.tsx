@@ -6,3 +6,10 @@ export type SideNavItem = {
   subMenuItems?: SideNavItem[];
 };
   
+export type Error = {
+  error:{
+    data:{
+      message: string
+    }
+  }
+}

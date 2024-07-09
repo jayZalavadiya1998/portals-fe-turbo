@@ -1,24 +1,10 @@
 import { AuthHook } from '@repo/common/common-library';
-import React from 'react';
-
-export const checkPermission = (
-	permission: Record<string, string[]>,
-	requiredPermission: string[]
-): boolean => {
-	return requiredPermission.every(x => {
-		const permissionPath = x.split('.');
-		if (permissionPath.length > 1 && permission[permissionPath[0]]) {
-			return (permission[permissionPath[0]] || []).some(
-				x => x.indexOf(permissionPath[1]) > -1
-			);
-		}
-		return false;
-	});
-};
+import { checkPermission } from './checkPermission';
+import { ReactNode } from 'react';
 
 interface IProps {
 	requiredPermission: string[];
-	children: any;
+	children: ReactNode;
 }
 
 export const PermissionGate = (props: IProps) => {

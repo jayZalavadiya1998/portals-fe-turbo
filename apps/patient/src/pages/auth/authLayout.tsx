@@ -4,7 +4,7 @@ function AuthLayout() {
 
     return (
         <div className="block h-screen w-screen flex-col items-center justify-center text-accent-foreground lg:max-w-none lg:grid lg:grid-cols-2 lg:px-0">
-            <div className="hidden relative lg:flex flex-col items-center bg-green-300 justify-center bg-blue-200 dark:bg-background h-full w-full">
+            <div className="hidden relative lg:flex flex-col items-center justify-center bg-blue-200 dark:bg-background h-full w-full">
                 <div>
                     <img 
                         className='object-scale-down h-48'
