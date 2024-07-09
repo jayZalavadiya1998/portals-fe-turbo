@@ -22,6 +22,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
       { title: 'All', path: '/projects' },
       { title: 'Web Design', path: '/projects/web-design' },
       { title: 'Graphic Design', path: '/projects/graphic-design' },
+
     ],
   },
   {
@@ -43,5 +44,10 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     title: 'Help',
     path: '/help',
     icon: <Icons.helpCircle width="16" height="16" />,
+  },
+  {
+    title: 'Notes',
+    path: '/patient-notes',
+    icon: <Icons.notebookPenIcon width="16" height="16" />,
   },
 ];

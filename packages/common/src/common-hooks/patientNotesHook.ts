@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PatientNotesService } from '../utility/service/patientNotesService';
+import { apiCallTime } from '../helper-methods';
 
 interface QueryStringFilter {
 	field: string;
@@ -51,10 +52,10 @@ export const PatientNotesHook = (patientId: number) => {
 	};
 
 	useEffect(() => {
-		fetchPatientNotes(patientId, queryString);
+		patientId && fetchPatientNotes(patientId, queryString);
 		const intervalCall = setInterval(() => {
 			fetchPatientNotes(patientId, queryString);
-		}, 15000);
+		}, apiCallTime);
 		return () => clearInterval(intervalCall);
 	}, [patientId, queryString.skip, queryString.filter.filters, queryString.take]);
 

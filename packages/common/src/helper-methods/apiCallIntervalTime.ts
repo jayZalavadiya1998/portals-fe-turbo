@@ -1,0 +1,1 @@
+export const apiCallTime = 60000000;

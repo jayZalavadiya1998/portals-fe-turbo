@@ -4,11 +4,12 @@ import { toast } from 'react-hot-toast';
 import { IPatientNotes, ICreatePatientNotes } from '../../../models';
 import PatientNotesScreen from '../presentation/patientNotes';
 import { PatientNotesHook } from '../../../common-hooks';
+import { GetPatientId } from '../../../helper-methods';
 interface PatientNotesContainerprops {
 	isLightMode?: boolean;
 }
 export const PatientNotesContainer = (props: PatientNotesContainerprops) => {
-
+	const patient_id: number = GetPatientId();
 	const {
 		patientNotesData,
 		fetchPatientNotes,
@@ -17,7 +18,7 @@ export const PatientNotesContainer = (props: PatientNotesContainerprops) => {
 		gridCount,
 		setIsLoading,
 		isLoading,
-	} = PatientNotesHook(1);
+	} = PatientNotesHook(patient_id);
 	const [isEditMode, setIsEditMode] = useState(false);
 	const [isModalState, setIsModalState] = useState(false);
 	const [isBtnDisable, setIsBtnDisable] = useState(false);

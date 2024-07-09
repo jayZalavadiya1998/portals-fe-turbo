@@ -22,14 +22,9 @@ const LoginScreen = (props: ILoginProps) => {
 		props.loginHandler(formData);
 	};
 
-	const onRegisterSubmit = (formData: any) => {
-		console.log("register =", formData);
-		props.handleRegister(formData);
-	};
-
 	const toggleSubMenu = () => {
 		setSubMenuOpen(!subMenuOpen);
-	  };
+	};
 
 	return (
 		<div className='bg-green-300'>
@@ -42,7 +37,7 @@ const LoginScreen = (props: ILoginProps) => {
 
 				<div className={`${subMenuOpen ? 'rotate-180' : ''} flex ml-6`}>
 
-hi				</div>
+					hi				</div>
 			</button>
 			<div className="lg:p-8 bg-foreground">
 				<div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
