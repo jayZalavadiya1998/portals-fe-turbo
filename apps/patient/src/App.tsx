@@ -1,4 +1,5 @@
 import { Button, Input } from '@repo/ui/shadcn'
+import {PatientNotesContainer} from '@repo/common/common-components'
 import '@repo/ui/global-css'
 import {
 	BrowserRouter as Router,
@@ -16,11 +17,11 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<SideNav />}>
-              {/* <Route
-                path='/'
-                element={<Home/>}
-              />
               <Route
+                path='/'
+                element={<PatientNotesContainer/>}
+              />
+              {/* <Route
                 path='/account-info'
                 element={<AccountInfo/>}
               />

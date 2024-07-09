@@ -117,7 +117,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
             </div>
           </button>
 
-          {subMenuOpen && (
+          {/* {subMenuOpen && (
             <div className="ml-5 flex flex-col">
               {item.subMenuItems?.map((subItem:any, idx:any) => {
                 return (
@@ -134,7 +134,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                 );
               })}
             </div>
-          )}
+          )} */}
         </>
       ) : (
         <Link
