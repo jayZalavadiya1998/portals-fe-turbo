@@ -36,6 +36,12 @@ importers:
       '@repo/common':
         specifier: workspace:^
         version: link:../../packages/common
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/config-eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/config-typescript
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -140,6 +146,12 @@ importers:
         specifier: ^6.24.1
         version: 6.24.1(react-dom@18.3.1)(react@18.3.1)
     devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../config-eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../config-typescript
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9

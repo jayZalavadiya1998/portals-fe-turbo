@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@repo/common": "workspace:^",
     "@repo/ui": "workspace:*",
     "axios": "^1.7.2",
