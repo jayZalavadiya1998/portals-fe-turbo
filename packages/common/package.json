@@ -2,7 +2,8 @@
   "name": "@repo/common",
   "version": "1.0.0",
   "exports": {
-    "./common-components": "./src/pages/index.ts"
+    "./common-library": "./src/index.ts"
+ 
   },
   "description": "",
   "main": "index.js",
@@ -26,7 +27,8 @@
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.52.1",
     "react-hot-toast": "^2.4.1",
-    "react-jss": "^10.10.0"
+    "react-jss": "^10.10.0",
+    "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.9",

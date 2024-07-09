@@ -1,27 +1,70 @@
-import { Button, Input } from '@repo/ui/shadcn'
-import {PatientNotesContainer} from '@repo/common/common-components'
-import '@repo/ui/global-css'
+import { Button, Input } from '@repo/ui/shadcn';
+import '@repo/ui/global-css';
 import {
-	BrowserRouter as Router,
-	Route,
-	Routes,
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
 } from 'react-router-dom';
 import SideNav from './components/side-nav';
 import { ThemeProvider } from './components/theme-provider';
+import { AuthProvider, PatientNotesContainer, PatientProvider, ProtectRoute } from '@repo/common/common-library';
+import { LoginContainer, PermissionGate } from './pages';
+import AuthLayout from './pages/auth/authLayout';
+import { RoleConstant } from './utility';
 
 function App() {
 
   return (
     <>
       <ThemeProvider>
-        <Router>
-          <Routes>
-            <Route path='/' element={<SideNav />}>
-              <Route
-                path='/'
-                element={<PatientNotesContainer/>}
-              />
-              {/* <Route
+        <AuthProvider>
+          <PatientProvider>
+            <Router>
+              <Routes>
+                <Route
+                  path='/'
+                  element={<AuthLayout />}
+                >
+                  <Route
+                    index
+                    element={
+                      <Navigate
+                        to='/login'
+                        replace
+                      />
+                    }
+                  />
+                  <Route
+                    path='/login'
+                    element={<LoginContainer />}
+                  />
+                </Route>
+                <Route path='/' element={
+                  <ProtectRoute>
+                    <SideNav
+
+                    />
+                  </ProtectRoute>
+
+                }
+
+                >
+                  <Route
+                    path='/patient-notes'
+                    element={
+                      <ProtectRoute>
+                        <PermissionGate
+                          requiredPermission={[RoleConstant.patient.view]}
+                        >
+                          <PatientNotesContainer />
+                        </PermissionGate>
+                      </ProtectRoute>
+
+                    }
+                  />
+
+                  {/* <Route
                 path='/account-info'
                 element={<AccountInfo/>}
               />
@@ -29,12 +72,14 @@ function App() {
                 path='/messages'
                 element={<Messages/>}
               /> */}
-            </Route>
-          </Routes>
-        </Router>
+                </Route>
+              </Routes>
+            </Router>
+          </PatientProvider>
+        </AuthProvider>
       </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

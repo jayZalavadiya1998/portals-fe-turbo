@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
-import { PatientNotesService } from '../src/utility/service/patientNotesService';
+import { PatientNotesService } from '../utility/service/patientNotesService';
 
 interface QueryStringFilter {
-    field: string;
-    value: any;
-    operator: string;
+	field: string;
+	value: any;
+	operator: string;
 }
 
 
 export interface IQueryString {
-    filter: {
-        filters: QueryStringFilter[];
-        logic: 'and' | 'or';
-    };
-    skip: number | string;
-    take: number | string;
+	filter: {
+		filters: QueryStringFilter[];
+		logic: 'and' | 'or';
+	};
+	skip: number | string;
+	take: number | string;
 }
 
 export const PatientNotesHook = (patientId: number) => {
@@ -44,7 +44,7 @@ export const PatientNotesHook = (patientId: number) => {
 		} catch (error: any) {
 			// error?.data?.error && customToaster.error(error?.data?.error);
 			// error?.data?.message && customToaster.error(error?.data?.message);
-			setError(error?.data?.message ||'askjdhaskdhn');
+			setError(error?.data?.message || 'askjdhaskdhn');
 		} finally {
 			setIsLoading(false);
 		}
