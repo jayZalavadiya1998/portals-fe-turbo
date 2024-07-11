@@ -5,4 +5,17 @@ applications:
         preBuild:
           commands:
             - curl -fsSL https://get.pnpm.io/install.sh | sh -
-            - export PATH="$HOME/.local/share/pnpm:$PATH"      
+            - export PATH="$HOME/.local/share/pnpm:$PATH"
+            - pnpm install
+        build:
+          commands:
+            - pnpm run build --filter=apps/patient...
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - apps/patient/node_modules/**/*
+          - packages/**/node_modules/**/*

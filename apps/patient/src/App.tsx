@@ -51,13 +51,9 @@ function App() {
                   <Route
                     path='/patient-notes'
                     element={
-                      <ProtectRoute>
-                        <PermissionGate
-                          requiredPermission={[RoleConstant.patient.view]}
-                        >
-                          <PatientNotesContainer />
-                        </PermissionGate>
-                      </ProtectRoute>
+
+                      <PatientNotesContainer />
+
 
                     }
                   />

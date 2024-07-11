@@ -1,4 +1,4 @@
-const basePath = 'http://*.localhost:8000' || '';
+const basePath = 'http://*aleracare.localhost:8000' || '';
 export const APIConstant = {
 	basePath: basePath.replace('*', window.location.hostname.split('.')[0]),
 
@@ -221,7 +221,7 @@ export const APIConstant = {
 	pharmacy_Refill_Archive_fax: 'portals/pharmacy/pharmacy-refill-request-archive/?search=',
 	patient_Archive_list: 'portals/patient/<int:patient_id>/patient-rx-archive-fax/?search=',
 	physician_Archive_list: 'portals/physician/<int:physician_assistant_user_id>/physician-rx-archive-fax/?search=',
-	pharmacy_infusion_Archive_list:'portals/pharmacy/infusion-appointment-archive/?search=',
+	pharmacy_infusion_Archive_list: 'portals/pharmacy/infusion-appointment-archive/?search=',
 	//Archive Fax Api End
 
 
