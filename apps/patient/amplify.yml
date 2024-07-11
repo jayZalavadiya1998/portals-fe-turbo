@@ -5,11 +5,14 @@ applications:
       phases:
         preBuild:
           commands:
+            - curl -fsSL https://get.pnpm.io/install.sh | sh -
+            - export PATH="$HOME/.local/share/pnpm:$PATH"
+            - pnpm install
             - npm ci
-            - npx turbo run build --filter=my-react-app...
+            - npx turbo run build --filter=apps/patient...
         build:
           commands:
-            - npm run build
+            - pnpm run build
       artifacts:
         baseDirectory: dist
         files:
