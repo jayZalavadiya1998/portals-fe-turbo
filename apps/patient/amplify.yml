@@ -9,7 +9,7 @@ applications:
             - npx turbo run build --filter=my-react-app...
         build:
           commands:
-            - pnpm run build
+            - npm run build
       artifacts:
         baseDirectory: dist
         files:
