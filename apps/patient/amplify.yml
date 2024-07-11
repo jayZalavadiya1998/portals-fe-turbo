@@ -1,6 +1,5 @@
 version: 1
 applications:
-  - appRoot: apps/patient
     frontend:
       phases:
         preBuild:
@@ -12,7 +11,7 @@ applications:
           commands:
             - pnpm run build --filter=apps/patient...
       artifacts:
-        baseDirectory: dist
+        baseDirectory: apps/patient/dist
         files:
           - '**/*'
       cache:
