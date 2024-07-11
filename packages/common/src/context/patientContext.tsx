@@ -46,15 +46,19 @@ export const PatientProvider = ({ children }: IPatientProvider) => {
     roles: '',
   });
 
-  let local_patient_data: any = localStorage.getItem("patient_info");
 
-  if (!local_patient_data) {
+  const setContextDetails = () => {
+    let local_patient_data: any = localStorage.getItem("patient_info");
+
     local_patient_data = JSON.parse(local_patient_data);
-  }
+
+    setPatient(local_patient_data);
+    setPatient(local_patient_data);
+  };
 
   useEffect(() => {
-    setPatient(local_patient_data);
-  }, [local_patient_data]);
+    setContextDetails();
+  }, []);
 
   return (
     <PatientContext.Provider value={{ patient_data, setPatient }}>
