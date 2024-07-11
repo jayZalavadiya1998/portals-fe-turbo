@@ -4,9 +4,9 @@ applications:
       phases:
         preBuild:
           commands:
-            - curl -fsSL https://get.pnpm.io/install.sh | sh -
+            - chmod +x build.sh
+            - ./build.sh apps/patient
             - export PATH="$HOME/.local/share/pnpm:$PATH"
-            - pnpm install
         build:
           commands:
             - pnpm run build --filter=apps/patient...
