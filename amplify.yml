@@ -1,0 +1,8 @@
+version: 1
+applications:
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - curl -fsSL https://get.pnpm.io/install.sh | sh -
+            - export PATH="$HOME/.local/share/pnpm:$PATH"      

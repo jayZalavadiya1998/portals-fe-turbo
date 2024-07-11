@@ -2,11 +2,6 @@ version: 1
 applications:
     frontend:
       phases:
-        preBuild:
-          commands:
-            - chmod +x build.sh
-            - ./build.sh apps/patient
-            - export PATH="$HOME/.local/share/pnpm:$PATH"
         build:
           commands:
             - pnpm run build --filter=apps/patient...
