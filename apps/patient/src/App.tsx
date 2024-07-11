@@ -39,11 +39,8 @@ function App() {
                   />
                 </Route>
                 <Route path='/' element={
-                  <ProtectRoute>
-                    <SideNav
+                  <SideNav />
 
-                    />
-                  </ProtectRoute>
 
                 }
 
