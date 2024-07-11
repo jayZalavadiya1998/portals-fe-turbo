@@ -39,8 +39,11 @@ function App() {
                   />
                 </Route>
                 <Route path='/' element={
-                  <SideNav />
+                  <ProtectRoute>
+                    <SideNav
 
+                    />
+                  </ProtectRoute>
 
                 }
 
@@ -48,9 +51,13 @@ function App() {
                   <Route
                     path='/patient-notes'
                     element={
-
-                      <PatientNotesContainer />
-
+                      <ProtectRoute>
+                        <PermissionGate
+                          requiredPermission={[RoleConstant.patient.view]}
+                        >
+                          <PatientNotesContainer />
+                        </PermissionGate>
+                      </ProtectRoute>
 
                     }
                   />
