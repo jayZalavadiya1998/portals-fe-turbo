@@ -33,7 +33,7 @@ export const PatientContext = createContext<PatientContextProps>({
 
 // Create the provider component
 interface IPatientProvider {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const PatientProvider = ({ children }: IPatientProvider) => {
@@ -54,7 +54,7 @@ export const PatientProvider = ({ children }: IPatientProvider) => {
 
   useEffect(() => {
     setPatient(local_patient_data);
-  }, []);
+  }, [local_patient_data]);
 
   return (
     <PatientContext.Provider value={{ patient_data, setPatient }}>
