@@ -33,7 +33,7 @@ export const PatientContext = createContext<PatientContextProps>({
 
 // Create the provider component
 interface IPatientProvider {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const PatientProvider = ({ children }: IPatientProvider) => {
@@ -46,14 +46,18 @@ export const PatientProvider = ({ children }: IPatientProvider) => {
     roles: '',
   });
 
-  let local_patient_data: any = localStorage.getItem("patient_info");
 
-  if (!local_patient_data) {
+  const setContextDetails = () => {
+    let local_patient_data: any = localStorage.getItem("patient_info");
+
     local_patient_data = JSON.parse(local_patient_data);
-  }
+
+    setPatient(local_patient_data);
+    setPatient(local_patient_data);
+  };
 
   useEffect(() => {
-    setPatient(local_patient_data);
+    setContextDetails();
   }, []);
 
   return (

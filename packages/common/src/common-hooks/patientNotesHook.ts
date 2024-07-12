@@ -37,7 +37,7 @@ export const PatientNotesHook = (patientId: number) => {
 	};
 
 	useEffect(() => {
-		patientId && fetchPatientNotes(patientId, queryString);
+		fetchPatientNotes(patientId, queryString);
 		const intervalCall = setInterval(() => {
 			fetchPatientNotes(patientId, queryString);
 		}, apiCallTime);
