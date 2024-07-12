@@ -14,7 +14,6 @@ const LoginScreen = (props: ILoginProps) => {
 	const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
 	const onLoginSubmit = (formData: InputTypeLoginUser) => {
-		console.log("login =", formData);
 		setIsLoading(true)
 		props.loginHandler(formData);
 		setIsLoading(false)

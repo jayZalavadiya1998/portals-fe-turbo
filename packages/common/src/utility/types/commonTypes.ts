@@ -1,3 +1,5 @@
+import { ColumnDef } from "@tanstack/react-table";
+
 interface QueryStringFilter {
 	field: string;
 	value: string;
@@ -12,3 +14,10 @@ export interface IQueryString {
 	skip: number | string;
 	take: number | string;
 }
+
+export type CustomColumnDef<TData> = ColumnDef<TData> & {
+	toFilter?: boolean;
+	searchType?: string;
+	operator?: string;
+	headerName?: string;
+  };

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Icons } from '@repo/ui/shadcn';
-import { SIDENAV_ITEMS } from '../utility/constant/side-nav';
+import { SIDENAV_ITEMS } from '../utility/constant/side-nav-items';
 import { useTheme } from './useTheme';
 import { SideNavItem } from '../utility';
 
@@ -10,7 +10,7 @@ const SideNav = () => {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className='flex h-screen'>
+    <div className='flex h-screen w-full'>
       <div
         style={{ overflowY: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
         className="md:w-60  min-w-fit max-w-fit bg-white flex-1 border-r border-zinc-200 hidden md:flex h-screen overflow-y-auto"
@@ -21,7 +21,6 @@ const SideNav = () => {
               to="/"
 
             >
-
               <span className="h-4 w-4 bg-zinc-300 rounded-lg" />
               <span className="font-bold text-xl text-foreground hidden md:flex">Logo</span>
 
@@ -54,8 +53,7 @@ const SideNav = () => {
         </div>
       </div>
       <div
-        className='overflow-y-auto flex-1'
-        style={{ overflowY: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
+        className='overflow-y-auto flex-1 p-4 m-0'
       >
         <Outlet />
       </div>

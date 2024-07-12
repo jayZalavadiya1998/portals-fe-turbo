@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PatientNotesService } from '../utility/service/patientNotesService';
-import { apiCallTime } from '../helper-methods';
 import { IQueryString } from '../utility';
+import { apiCallTime } from '../helper-methods';
 
 export const PatientNotesHook = (patientId: number) => {
 

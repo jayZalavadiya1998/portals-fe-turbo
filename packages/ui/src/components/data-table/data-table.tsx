@@ -1,11 +1,13 @@
 "use client"
 
-import * as React from "react"
+import React from "react"
 import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
+  RowSelectionState,
+  PaginationState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -14,6 +16,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  Updater,
 } from "@tanstack/react-table"
 
 import {
@@ -27,25 +30,78 @@ import {
 import { DataTableToolbar } from "./data-table-toolbar"
 import { DataTablePagination } from "./data-table-pagination"
 
-// import { DataTablePagination } from "../components/data-table-pagination"
-// import { DataTableToolbar } from "../components/data-table-toolbar"
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  toolbar: boolean
+  handleGridChange: (updater: Updater<PaginationState>) => void
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  toolbar,
+  handleGridChange,
 }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({})
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const [sorting, setSorting] = React.useState<SortingState>([])
+
+  // Log state changes
+  const handleRowSelectionChange = (updater: Updater<RowSelectionState>) => {
+    setRowSelection((old) => {
+      const newState = typeof updater === 'function' ? updater(old) : updater;
+      console.log("Row Selection Changed: ", newState);
+      return newState;
+    })
+  }
+
+  const handleSortingChange = (updater: Updater<SortingState>) => {
+    setSorting((old) => {
+      const newState = typeof updater === 'function' ? updater(old) : updater;
+      console.log("Sorting Changed: ", newState);
+      return newState;
+    })
+  }
+
+  const handleColumnFiltersChange = (updater: Updater<ColumnFiltersState>) => {
+    setColumnFilters((old) => {
+      const newState = typeof updater === 'function' ? updater(old) : updater;
+      console.log("Column Filters Changed: ", newState);
+      return newState;
+    })
+  }
+
+  const handleColumnVisibilityChange = (updater: Updater<VisibilityState>) => {
+    setColumnVisibility((old) => {
+      const newState = typeof updater === 'function' ? updater(old) : updater;
+      console.log("Column Visibility Changed: ", newState);
+      return newState;
+    })
+  }
+
+  // const handlePaginationChange = (updater: Updater<PaginationState>) => {
+  //   let newState: PaginationState = {
+  //     'pageIndex': 0,
+  //     'pageSize': 10
+  //   }
+  //   setPagination((old) => {
+  //     newState = typeof updater === 'function' ? updater(old) : updater;
+  //     return newState;
+  //   })
+  //   handleGridChange(newState)
+  // }
+
+  const [pagination, setPagination] = React.useState({
+    pageIndex: 0, //initial page index
+    pageSize: 10, //default page size
+  });
+
+  React.useEffect(()=>{
+    handleGridChange(pagination)
+
+  }, [pagination])
 
   const table = useReactTable({
     data,
@@ -55,12 +111,22 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
       columnFilters,
+      pagination,
     },
+    initialState: {
+      pagination: {
+        pageIndex: 0, //custom initial page index
+        pageSize: 10, //custom default page size
+      },
+    },
+    manualPagination: true,
+    rowCount: 12,
     enableRowSelection: true,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: handleRowSelectionChange,
+    onSortingChange: handleSortingChange,
+    onColumnFiltersChange: handleColumnFiltersChange,
+    onColumnVisibilityChange: handleColumnVisibilityChange,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -71,7 +137,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
+      {toolbar ? <DataTableToolbar table={table} /> : ''}
       <div className="rounded-md border">
         <Table>
           <TableHeader>

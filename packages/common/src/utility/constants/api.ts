@@ -1,4 +1,4 @@
-const basePath = 'http://osborn.localhost:8000' || '';
+const basePath = 'http://*.localhost:8000' || '';
 export const APIConstant = {
 	basePath: basePath.replace('*', window.location.hostname.split('.')[0]),
 

@@ -53,6 +53,7 @@ import {
   Menu,
   CircleCheck,
   NotebookPenIcon,
+  FilterIcon,
 } from 'lucide-react';
 
 export const Icons = {
@@ -108,6 +109,7 @@ export const Icons = {
   menu: Menu,
   circleCheck: CircleCheck,
   notebookPenIcon: NotebookPenIcon,
+  filter: FilterIcon,
   checkSVG: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
