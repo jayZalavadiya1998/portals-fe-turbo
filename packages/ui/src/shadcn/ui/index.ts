@@ -11,3 +11,7 @@ export * from "./popover";
 export * from "./select";
 export * from "./separator";
 export * from "./table";
+export * from "./card";
+export * from "./scroll-area";
+export * from "./textarea";
+export * from "./combobox"

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "exports": {
     "./common-library": "./src/index.ts"
- 
   },
   "description": "",
   "main": "index.js",
@@ -15,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@repo/ui": "workspace:*",
     "@tanstack/react-table": "^8.19.2",
     "axios": "^1.7.2",
@@ -29,13 +29,14 @@
     "react-hook-form": "^7.52.1",
     "react-hot-toast": "^2.4.1",
     "react-jss": "^10.10.0",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.24.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@types/react-dom": "^18.3.0"
   }
 }
