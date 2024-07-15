@@ -50,4 +50,9 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     path: '/patient-notes',
     icon: <Icons.notebookPenIcon width="16" height="16" />,
   },
+  {
+    title: 'Messages',
+    path: '/patient-messages',
+    icon: <Icons.notebookPenIcon width="16" height="16" />,
+  },
 ];

@@ -10,6 +10,7 @@ import { AuthProvider, PatientNotesContainer, PatientProvider, ProtectRoute } fr
 import { LoginContainer, PermissionGate } from './pages';
 import AuthLayout from './pages/auth/authLayout';
 import { RoleConstant } from './utility';
+import { PatientMessagesContainer } from './pages/patient-messages/container';
 
 function App() {
 
@@ -61,7 +62,19 @@ function App() {
 
                     }
                   />
+                  <Route
+                    path='/patient-messages'
+                    element={
+                      <ProtectRoute>
+                        <PermissionGate
+                          requiredPermission={[RoleConstant.patient.view]}
+                        >
+                          <PatientMessagesContainer />
+                        </PermissionGate>
+                      </ProtectRoute>
 
+                    }
+                  />
                   {/* <Route
                 path='/account-info'
                 element={<AccountInfo/>}
