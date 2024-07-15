@@ -11,6 +11,7 @@ import { LoginContainer, PermissionGate } from './pages';
 import AuthLayout from './pages/auth/authLayout';
 import { RoleConstant } from './utility';
 import { PatientMessagesContainer } from './pages/patient-messages/container';
+import { Toaster } from 'sonner';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <ThemeProvider>
         <AuthProvider>
           <PatientProvider>
+            <Toaster />
             <Router>
               <Routes>
                 <Route

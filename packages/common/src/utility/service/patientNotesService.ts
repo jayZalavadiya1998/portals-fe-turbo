@@ -2,8 +2,8 @@ import { BaseService } from './base';
 import { compressToBase64 as lzStringCompressToBase64 } from 'lz-string';
 import axios, { CancelTokenSource } from 'axios';
 import { APIConstant } from '../constants/api';
-import { ICreatePatientNotes, IPatientNotes } from '../../models/patientNotes';
 import { IResponse } from '../../models';
+import { ICreatePatientNotes, IPatientNotes } from '../../pages/patient-notes/presentation/types';
 export class PatientNotesService {
 	private static cancelToken: CancelTokenSource | null = null;
 	static getPatientNotes = async (patient_id: number, search: string) => {

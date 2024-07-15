@@ -14,4 +14,5 @@ export * from "./table";
 export * from "./card";
 export * from "./scroll-area";
 export * from "./textarea";
-export * from "./combobox"
+export * from "./combobox";
+export * from "./sonner";
