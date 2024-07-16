@@ -78,7 +78,7 @@ const SheetHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col space-y-2 text-center text-left bg-red-800",
+      "flex flex-col space-y-1 text-center text-left pt-4 px-4",
       className
     )}
     {...props}
@@ -92,7 +92,7 @@ const SheetFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      "flex space-x-4",
       className
     )}
     {...props}

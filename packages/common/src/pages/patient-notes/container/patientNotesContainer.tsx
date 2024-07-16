@@ -1,10 +1,10 @@
 import PatientNotesScreen from '../presentation/patientNotes';
 import { PatientNotesHook } from '../../../common-hooks';
 import { GetPatientId } from '../../../helper-methods';
-import { IQueryString, PatientNotesService } from '../../../utility';
+import { IQueryString, MessageConstant, PatientNotesService } from '../../../utility';
 import { useCallback, useState } from 'react';
 import CustomFilterStateManage from '../../../helper-methods/custom-filter';
-import { ICreatePatientNotes } from '../presentation/types';
+import { ICreatePatientNotes, IPatientNotes } from '../presentation/types';
 import { toast } from 'sonner';
 
 export const PatientNotesContainer = () => {
@@ -19,13 +19,21 @@ export const PatientNotesContainer = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [isBtnDisable, setIsBtnDisable] = useState<boolean>(false)
 	const [sheetOpen, setSheetOpen] = useState<boolean>(false);
+	const [currentNotes, setCurrentNotes] = useState<IPatientNotes>()
 
 	const closeSheet = () => {
 		setSheetOpen(false)
+		setCurrentNotes(undefined)
 	}
 
 	const openSheet = () => {
 		setSheetOpen(true)
+	}
+
+	const handleEdit = (row: IPatientNotes) => {
+		setCurrentNotes(row)
+		setIsEdit(true)
+		openSheet()
 	}
 
 	const handleSubmit = async (formData: ICreatePatientNotes) => {
@@ -33,15 +41,15 @@ export const PatientNotesContainer = () => {
 		try {
 			setIsLoading(true)
 			if (isEdit) {
-				// const response = await PatientNotesService.updatePatientNote(
-				// 	currentNotes!.id,
-				// 	{
-				// 		...formData,
-				// 		id: currentNotes!.id,
-				// 	}
-				// )
-				// response?.message && customToaster.success(response?.message)
-				// fetchPatientNotes(patient_id, queryString)
+				const response = await PatientNotesService.updatePatientNote(
+					currentNotes!.id,
+					{
+						...formData,
+						id: currentNotes!.id,
+					}
+				)
+				response?.message && toast.success(response?.message)
+				fetchPatientNotes(patient_id, queryString)
 				closeSheet()
 			} else {
 				const response = await PatientNotesService.createPatientNote({
@@ -55,20 +63,38 @@ export const PatientNotesContainer = () => {
 		} catch (error: any) {
 			if (error?.data?.state === 'error' || error?.data?.state == 'exception') {
 				if (typeof error?.data?.error === 'object') {
-					// Object.keys(error?.data?.error).forEach((key) => {
-					// 	customToaster.error(error?.data?.error[key])
-					// })
+					Object.keys(error?.data?.error).forEach((key) => {
+						toast.error(error?.data?.error[key])
+					})
 				} else {
-					// error?.data?.error && customToaster.error(error?.data?.error)
-					// error?.data?.message && customToaster.error(error?.data?.message)
+					error?.data?.error && toast.error(error?.data?.error)
+					error?.data?.message && toast.error(error?.data?.message)
 				}
 			} else {
-				// error?.data?.error && customToaster.error(error?.data?.error)
-				// error?.data?.message && customToaster.error(error?.data?.message)
+				error?.data?.error && toast.error(error?.data?.error)
+				error?.data?.message && toast.error(error?.data?.message)
 			}
 		} finally {
 			setIsLoading(false)
 			setIsBtnDisable(false)
+		}
+	}
+
+	const handlePatientNoteDelete = async (rec_id: number) => {
+		try {
+			setIsLoading(true)
+			const response = await PatientNotesService.deletePatientNotes(rec_id)
+			response?.message && toast.success(response?.message)
+			fetchPatientNotes(patient_id, queryString)
+		} catch (error: any) {
+			if (error?.status === 404) {
+				toast.error(MessageConstant.commonFailureMessage)
+			} else {
+				error?.data?.error && toast.error(error?.data?.error)
+				error?.data?.message && toast.error(error?.data?.message)
+			}
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
@@ -117,6 +143,7 @@ export const PatientNotesContainer = () => {
 			patientNotesData={patientNotesData ? patientNotesData : []}
 			handleGridChange={handleGridChange}
 			handleFilterChange={handleFilterChange}
+			handlePatientNoteDelete={handlePatientNoteDelete}
 			isEdit={isEdit}
 			setIsEdit={setIsEdit}
 			isLoading={isLoading}
@@ -124,8 +151,12 @@ export const PatientNotesContainer = () => {
 			isBtnDisable={isBtnDisable}
 			setIsBtnDisable={setIsBtnDisable}
 			sheetOpen={sheetOpen}
+			setSheetOpen={setSheetOpen}
 			openSheet={openSheet}
 			handleSubmit={handleSubmit}
+			handleEdit={handleEdit}
+			currentNotes={currentNotes}
+			setCurrentNotes={setCurrentNotes}
 		/>
 	);
 };

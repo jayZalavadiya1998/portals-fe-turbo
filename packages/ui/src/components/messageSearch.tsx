@@ -239,7 +239,6 @@ export const MessageSearchComponent = React.forwardRef<MultipleSelectorRef, Mult
         };
         const handleBadgeInputChanges = (option: string, newValue: string) => {
             // let searchOption = option.toLowerCase();
-            console.log(badgeInputValues);
             // searchOption = searchOption === "subject" ? searchOption : searchOption === "physician" ? `${searchOption}_name` : `${searchOption}_data`;
             setBadgeInputValues({ ...badgeInputValues, [option]: newValue });
             customSearchFilter(option, newValue);

@@ -38,14 +38,12 @@ export function ComboboxDemo() {
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
             {frameworks.map((framework) => {
-              console.log('fear =', framework)
               return(
                 <CommandList>
                   <CommandItem
                     key={framework.value}
                     value={framework.value}
                     onSelect={(currentValue) => {
-                      console.log("Selected value:", currentValue);
                       setValue(currentValue === value ? "" : currentValue);
                       setOpen(false);
                     }}

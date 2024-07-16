@@ -10,6 +10,7 @@ export interface IPatientNotes {
   }
   
 export interface ICreatePatientNotes {
+  id?: number;
   subject_id: number;
   patient_id?: number;
   note_text?: string;
@@ -24,5 +25,8 @@ export interface INotesCommonProps {
   isBtnDisable : boolean
   setIsBtnDisable : React.Dispatch<React.SetStateAction<boolean>>
   sheetOpen: boolean
+  setSheetOpen: React.Dispatch<React.SetStateAction<boolean>>
   openSheet: () => void
+  currentNotes: IPatientNotes | undefined
+  setCurrentNotes: React.Dispatch<React.SetStateAction<IPatientNotes|undefined>>
 }

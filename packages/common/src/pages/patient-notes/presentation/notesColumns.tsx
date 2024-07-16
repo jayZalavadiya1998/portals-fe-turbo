@@ -59,5 +59,5 @@ export const notesColumns: CustomColumnDef<any>[] = [
     cell: ({ row }) => <div className="w-fit">{row.getValue("updated_date")}</div>,
     enableSorting: true,
     enableHiding: false,
-  },
+  }
 ];
